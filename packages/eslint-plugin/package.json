@@ -1,6 +1,6 @@
 {
   "name": "@augustaba/eslint-plugin",
-  "version": "@0.0.1-beta.3+bcc89d8",
+  "version": "0.0.1",
   "description": "eslint plugin",
   "keywords": [
     "eslint",

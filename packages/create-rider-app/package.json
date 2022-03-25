@@ -1,6 +1,6 @@
 {
   "name": "@augustaba/create-react-app",
-  "version": "0.0.3-beta.3+bcc89d8",
+  "version": "0.0.3",
   "description": "create a react app",
   "keywords": [
     "cli",
