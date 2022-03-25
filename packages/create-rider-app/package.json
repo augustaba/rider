@@ -23,5 +23,8 @@
     "ora": "5.4.1",
     "shelljs": "^0.8.4",
     "tracer": "^1.1.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
