@@ -1,0 +1,41 @@
+{
+  "name": "@augustaba/eslint-plugin",
+  "version": "0.0.1",
+  "description": "eslint plugin",
+  "keywords": [
+    "eslint",
+    "plugin"
+  ],
+  "author": "liuhui <liuhui_0410@youzan.com>",
+  "homepage": "https://github.com/augustaba/rider#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augustaba/rider.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/augustaba/rider/issues"
+  },
+  "dependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-import": "^0.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-unicorn": "^41.0.1"
+  }
+}

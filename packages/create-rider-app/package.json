@@ -1,0 +1,27 @@
+{
+  "name": "@augustaba/create-react-app",
+  "version": "0.0.2",
+  "description": "create a react app",
+  "keywords": [
+    "cli",
+    "react"
+  ],
+  "bin": {
+    "rider-create": "./bin/index.js"
+  },
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/augustaba/rider-cli",
+  "repository": "https://github.com/augustaba/rider-cli",
+  "author": "augustaba  <lemons.lhui@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^8.2.0",
+    "git-clone": "^0.1.0",
+    "ora": "5.4.1",
+    "shelljs": "^0.8.4",
+    "tracer": "^1.1.5"
+  }
+}
