@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@augustaba/eslint-plugin": "^0.0.2",
     "eslint": "^8.11.0",
     "lerna": "^4.0.0"
   },
