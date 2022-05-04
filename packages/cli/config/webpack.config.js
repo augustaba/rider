@@ -118,7 +118,7 @@ module.exports = function (env) {
                   loader: require.resolve('css-loader'),
                   options: { modules: true, exportOnlyLocals: false },
                 },
-                'sass-loader',
+                require.resolve('sass-loader'),
               ],
             },
             {
