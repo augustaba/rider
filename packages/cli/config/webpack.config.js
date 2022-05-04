@@ -6,13 +6,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const { appIndexJs, appSrc, appNodeModules, appHtml, appDist } = require('./paths')
-const path = require('path')
+const { appIndexJs, appSrc, appNodeModules, appHtml, appDist } = require('./paths');
+const path = require('path');
 
-module.exports = function(env) {
-  const isDevelopment = env === 'development'
+module.exports = function (env) {
+  const isDevelopment = env === 'development';
   const isProduction = env === 'production';
-  return  {
+  return {
     mode: isProduction ? 'production' : isDevelopment && 'development',
     devtool: isDevelopment ? 'eval-source-map' : false,
     stats: 'errors-only',
@@ -56,7 +56,7 @@ module.exports = function(env) {
           test: /\.(tsx?|js)$/,
           loader: require.resolve('babel-loader'),
           include: appSrc,
-          options: { 
+          options: {
             babelrc: false,
             configFile: false,
             compact: false,
@@ -66,53 +66,64 @@ module.exports = function(env) {
               [
                 require('@babel/preset-env'),
                 {
-                  "useBuiltIns": "usage",
-                  "corejs": 3,
-                  "modules": false
-                }
+                  useBuiltIns: 'usage',
+                  corejs: 3,
+                  modules: false,
+                },
               ],
               require('@babel/preset-react').default,
             ],
             plugins: [
-              [require('@babel/plugin-proposal-decorators').default, { "legacy": true }],
+              [require('@babel/plugin-proposal-decorators').default, { legacy: true }],
               [
                 require('babel-plugin-import').default,
                 {
-                  "libraryName": "antd",
-                  "libraryDirectory": "lib",
-                  "style": true
-                }
+                  libraryName: 'antd',
+                  libraryDirectory: 'lib',
+                  style: true,
+                },
               ],
               [
                 require('@babel/plugin-transform-runtime').default,
                 {
                   corejs: false,
-                  // By default, babel assumes babel/runtime version 7.0.0-beta.0,
-                  // explicitly resolving to match the provided helper functions.
-                  // https://github.com/babel/babel/issues/10261
                   version: require('@babel/runtime/package.json').version,
                   regenerator: true,
-                  // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
-                  // We should turn this on once the lowest version of Node LTS
-                  // supports ES Modules.
                   useESModules: true,
-                  // Undocumented option that lets us encapsulate our runtime, ensuring
-                  // the correct version is used
-                  // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
-                  absoluteRuntime: path.dirname(
-                    require.resolve('@babel/runtime/package.json')
-                  ),
+                  absoluteRuntime: path.dirname(require.resolve('@babel/runtime/package.json')),
                 },
-              ]
-            ]
+              ],
+              require.resolve('./babelPluginAutoCssModules'),
+            ],
           },
         },
         {
           test: /\.css$/,
           include: appSrc,
-          use: [
-            MiniCssExtractPlugin.loader,
-            require.resolve('css-loader')
+          use: [MiniCssExtractPlugin.loader, require.resolve('css-loader')],
+        },
+        {
+          test: /\.css$/,
+          include: appSrc,
+          use: [MiniCssExtractPlugin.loader, require.resolve('css-loader')],
+        },
+        {
+          test: /\.s?css$/,
+          oneOf: [
+            {
+              resourceQuery: /modules/,
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: require.resolve('css-loader'),
+                  options: { modules: true, exportOnlyLocals: false },
+                },
+                'sass-loader',
+              ],
+            },
+            {
+              use: [MiniCssExtractPlugin.loader, require.resolve('css-loader'), require.resolve('sass-loader')],
+            },
           ],
         },
       ],
@@ -136,5 +147,5 @@ module.exports = function(env) {
         exclude: /node_modules/,
       }),
     ],
-  }
-}
+  };
+};
