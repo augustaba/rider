@@ -4,29 +4,28 @@ process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 
 const { webpack } = require('webpack');
-const configFactory = require('./../config/webpack.config')
+const configFactory = require('./../config/webpack.config');
 
-console.log('child start', process.argv)
+console.log('child start', process.argv);
 
-const config = configFactory('production')
+const config = configFactory('production');
 
 function build() {
-  const compiler = webpack(config)
+  const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      console.log(stats)
+      console.log(stats);
       if (err) {
         // console.log(err, stats)
-        return reject(new Error(err))
+        return reject(new Error(err));
       }
       resolve({
-        success: true
-      })
-    })
-  })
+        success: true,
+      });
+    });
+  });
 }
 
-build().then(res => {
-  console.log(res)
-  process.exit(1)
-})
+build().then((res) => {
+  process.exit(1);
+});

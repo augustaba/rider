@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    jest: true,
     browser: true,
     es2021: true,
     node: true,
@@ -21,6 +22,8 @@ module.exports = {
   },
   plugins: ['unicorn', 'promise', '@typescript-eslint', 'prettier'],
   rules: {
+    'no-shadow': 'off',
+
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -45,6 +48,7 @@ module.exports = {
         },
       },
     ],
+    'unicorn/prevent-abbreviations': 'off',
 
     '@typescript-eslint/ban-ts-comment': [
       'error',
@@ -56,6 +60,8 @@ module.exports = {
         minimumDescriptionLength: 5,
       },
     ],
+
+    'react/require-default-props': 'off',
   },
   settings: {
     'import/resolver': {
