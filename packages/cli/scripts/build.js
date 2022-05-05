@@ -14,7 +14,6 @@ function build() {
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      console.log(stats);
       if (err) {
         // console.log(err, stats)
         return reject(new Error(err));
