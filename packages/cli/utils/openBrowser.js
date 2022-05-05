@@ -69,13 +69,21 @@ function startBrowserProcess(browser, url, args) {
       'Vivaldi',
       'Chromium',
     ];
-    const chromiumBrowser = 'Google Chrome';
-    execSync('ps cax | grep "' + chromiumBrowser + '"');
-    execSync('osascript openChrome.applescript "' + encodeURI(url) + '" "' + chromiumBrowser + '"', {
-      cwd: __dirname,
-      stdio: 'ignore',
-    });
-    return;
+
+    for (let chromiumBrowser of supportedChromiumBrowsers) {
+      try {
+        // Try our best to reuse existing tab
+        // on OSX Chromium-based browser with AppleScript
+        execSync('ps cax | grep "' + chromiumBrowser + '"');
+        execSync('osascript openChrome.applescript "' + encodeURI(url) + '" "' + chromiumBrowser + '"', {
+          cwd: __dirname,
+          stdio: 'ignore',
+        });
+        return true;
+      } catch (err) {
+        // Ignore errors.
+      }
+    }
   }
 
   // Another special case: on OS X, check if BROWSER has been set to "open".
@@ -108,7 +116,6 @@ function startBrowserProcess(browser, url, args) {
  */
 function openBrowser(url) {
   const { action, value, args } = getBrowserEnv();
-  console.log(action, value, args);
   switch (action) {
     case Actions.NONE:
       // Special case: BROWSER="none" will prevent opening completely.

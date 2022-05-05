@@ -47,7 +47,6 @@ devServer.startCallback(() => {
   }
 
   console.log(chalk.cyan('Starting the development server...\n'));
-  console.log(urls.localUrlForBrowser);
   openBrowser(urls.localUrlForBrowser);
 });
 
