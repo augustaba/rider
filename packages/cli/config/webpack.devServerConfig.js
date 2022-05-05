@@ -1,8 +1,7 @@
-const { appPublic } = require('./paths')
+const { appPublic } = require('./paths');
 
-module.exports = function(proxy, allowedHost) {
-  const disableFirewall =
-    !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true';
+module.exports = function (proxy, allowedHost) {
+  const disableFirewall = !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true';
   return {
     allowedHosts: disableFirewall ? 'all' : [allowedHost],
     headers: {
@@ -16,5 +15,5 @@ module.exports = function(proxy, allowedHost) {
     },
     proxy,
     historyApiFallback: true,
-  }
-}
+  };
+};
